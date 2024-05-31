@@ -1,0 +1,32 @@
+# Configuration for Kafka Consumer
+spring:
+  kafka:
+    bootstrap-servers: 172.20.111.197:9092
+    # Configuration for consumers
+    consumer:
+      # Address of WSL linux. Run "ip addr" and identify IP address of the 'etho0' interface in WSL terminal
+      # Or run "wsl hostname -I" in windows Command Prompt
+      bootstrap-servers: 172.20.111.197:9092
+      # Can create multiple consum er groups in Kafka - But for now, just one group ID
+      group-id: my-group
+      # auto-offset : earliest / exception / latest / none
+      auto-offset-reset: earliest
+      # Producer serializes objects to streams. The consu mer must deserialize the stream back to an object.
+      # Simple Deserializer for Strings. There are other deserializers for JSONs, etc
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+    # Configuration for producers
+    producer:
+      bootstrap-servers: 172.20.111.197:9092
+      # Producer serializes objects to stream. Simple Serializer for Strings
+      # The Serializer and Deserializer types must match
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    properties:
+      request:
+        timeout:
+          ms: 30000
+      retry:
+        backoff:
+          ms: 500
