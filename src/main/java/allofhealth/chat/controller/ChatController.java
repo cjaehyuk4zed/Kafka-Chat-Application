@@ -25,7 +25,7 @@ public class ChatController {
     // Consume messages coming from the specified API
     @GetMapping("/messages")
     public void startPublishing() {
-        webStreamConsumer.consumeAndPublish();
+        webStreamConsumer.consumeStreamAndPublish();
     }
 
 }

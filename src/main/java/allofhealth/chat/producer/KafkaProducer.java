@@ -1,5 +1,6 @@
 package allofhealth.chat.producer;
 
+import allofhealth.chat.config.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -15,7 +16,7 @@ public class KafkaProducer {
 
     public void sendMessage(String msg){
         log.info("Sending message to test-application-topic : {}", msg);
-        kafkaTemplate.send("test-spring-topic", msg);
+        kafkaTemplate.send(Constants.testTopic, msg);
     }
 
 }
